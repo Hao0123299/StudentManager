@@ -6,5 +6,7 @@ use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
-    //
+    public function showIndexTeacher(){
+        return view('teacher.listTeacher');
+    }
 }
