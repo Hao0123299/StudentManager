@@ -84,8 +84,8 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities1"
                aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fal fa-book"></i>
-                <span>Môn học và lớp</span>
+                <i class="fas fa-book"></i>
+                <span>Môn học</span>
             </a>
             <div id="collapseUtilities1" class="collapse" aria-labelledby="headingUtilities"
                  data-parent="#accordionSidebar">
@@ -99,7 +99,7 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities2"
                aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fal fa-book"></i>
+                <i class="fas fa-home"></i>
                 <span>Phòng học</span>
             </a>
             <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities"
@@ -334,7 +334,7 @@
 <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+{{--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>--}}
 
 </body>
 

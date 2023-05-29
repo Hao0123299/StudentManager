@@ -3,14 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\SubjectClass;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class StudentController extends Controller
 {
     public function showIndexStudent(){
-        return view('student.listStudent');
+        $student = Student::all();
+        $subjectClass = SubjectClass::all();
+//        $teacher = Teacher::all();
+        return view('student.listStudent',compact('student', 'subjectClass'));
     }
     public function saveStudent(Request $request){
+
         $student = new Student;
         $student->code = $request->code;
         $student->name = $request->name;
@@ -18,12 +26,14 @@ class StudentController extends Controller
         $student->phone = $request->phone;
         $student->date = $request->date;
         $student->save();
-        return redirect('/danh-sach-hoc-vien')->with('success', 'Thêm sinh viên thành công' );
+        return view('student.listStudent',compact('student', 'subjectClass', 'teacher'))->with('success', 'Thêm sinh viên thành công' );
+//        return redirect('/danh-sach-hoc-vien')->with('success', 'Thêm sinh viên thành công' );
     }
     public function deleteStudent($id){
-        DB::table('student')->where('id', $id)->delete();
-        Session::put('message', 'Xóa thông tin học sinh thành công');
-        return Redirect::to('danh-sach-hoc-sinh');
+        $student = Student::find($id);
+        $student->delete();
+        Session::put('message', 'Xóa thành công');
+        return redirect::to('danh-sach-hoc-vien');
     }
 
 }

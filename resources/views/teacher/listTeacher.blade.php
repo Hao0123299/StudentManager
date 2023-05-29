@@ -23,76 +23,187 @@
                         <thead>
                         <tr>
                             <td>STT</td>
-                            <th>Học và tên</th>
-                            <th>Môn dạy</th>
-                            <th>Lớp dạy</th>
+                            <th>Họ và tên</th>
                             <th>Số điện thoại</th>
+                            <th>Môn dạy</th>
                             <th>Tác vụ</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>
-                                <a href="#" data-toggle="modal" data-target="#modalViewTeacher"><i class="fas fa-eye"></i></a>
-                                <a href="#" data-toggle="modal" data-target="#modalEditTeacher"><i class="fas fa-pen"></i></a>
-                                <a href="#"><i class="fas fa-trash"></i></a>
+                            @foreach($teacher as $teacher)
+                            <tr>
+                                <td>{{$teacher->code}}</td>
+                                <td>{{$teacher->name}}</td>
+                                <td>{{$teacher->phone}}</td>
+                                <td>{{$teacher->classSubject}}</td>
+                                <td>
+                                    <a href="#" data-toggle="modal" data-target="#modalViewTeacher"><i class="fas fa-eye"></i></a>
+                                    <a href="#" data-toggle="modal" data-target="#modalEditTeacher"><i class="fas fa-pen"></i></a>
+                                    <a href="{{URL::to('/xoa-giao-vien/'.$teacher->id)}}"><i class="fas fa-trash"></i></a>
 
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
-        <!-- Modal Add Student-->
+        <!-- Modal Add Teacher-->
         <div class="modal fade" id="modalAddTeacher" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Thêm học sinh</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Thêm giáo viên</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form role="form" action="{{URL::to('/luu-thong-tin')}}" method="post">
+                    <form role="form" action="{{URL::to('/luu-thong-tin-giao-vien')}}" method="post">
                         @csrf
                         <div class="modal-body">
                             <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">STT</label>
-                                <div class="col-sm-9">
-                                    <input type="codeStudent" class="form-control form-control-sm" id="colFormLabelSm">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">STT</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="code" class="form-control form-control-sm" id="colFormLabelSm">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Họ và tên</label>
-                                <div class="col-sm-9">
-                                    <input type="name" class="form-control form-control-sm" id="colFormLabelSm">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Họ và tên</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="name" class="form-control form-control-sm" id="colFormLabelSm">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Môn học</label>
-                                <div class="col-sm-9">
-                                    <input type="subjectClass" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Ngày tháng năm sinh</label>
+                                <div class="col-sm-8">
+                                    <input type="date" name="birthday" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Số điện thoại</label>
-                                <div class="col-sm-9">
-                                    <input type="phone" class="form-control form-control-sm" id="colFormLabelSm">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Email</label>
+                                <div class="col-sm-8">
+                                    <input type="email" name="email" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Ngày bắt đầu</label>
-                                <div class="col-sm-9">
-                                    <input type="date" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Số điện thoại</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="phone" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Địa chỉ</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="address" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">CCCD/CMT</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="cccd" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Giới tính</label>
+                                <div class="col-sm-8">
+                                    <select name="sex" class="form-control" id="exampleFormControlSelect1">
+                                        <option value="0">Nam</option>
+                                        <option value="1">Nữ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Môn dạy</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="classSubject" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" name="luu_thong_tin_giao_vien" class="btn btn-primary">Lưu</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal Add Teacher -->
+
+        <!-- Modal View Teacher-->
+        <div class="modal fade" id="modalViewTeacher" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Thêm giáo viên</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form role="form" action="" method="post">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">STT</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="code" class="form-control form-control-sm" id="colFormLabelSm">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Họ và tên</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="name" class="form-control form-control-sm" id="colFormLabelSm">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Ngày tháng năm sinh</label>
+                                <div class="col-sm-8">
+                                    <input type="date" name="birthday" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Email</label>
+                                <div class="col-sm-8">
+                                    <input type="email" name="email" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Số điện thoại</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="phone" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Địa chỉ</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="address" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">CCCD/CMT</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="cccd" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Giới tính</label>
+                                <div class="col-sm-8">
+                                    <select name="sex" class="form-control" id="exampleFormControlSelect1">
+                                        <option value="0">Nam</option>
+                                        <option value="1">Nữ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Môn dạy</label>
+                                <div class="col-sm-8">
+                                    <select name="subjectClass" class="form-control" id="exampleFormControlSelect1">
+                                        <option>Toán 12</option>
+                                    </select>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="modal-footer">
                             <button type="submit" name="luu_thong_tin" class="btn btn-primary">Lưu</button>
@@ -101,115 +212,94 @@
                 </div>
             </div>
         </div>
-        <!-- End Modal Add Student -->
+        <!-- End Modal Add Teacher -->
 
-        <!-- Modal View Student-->
-        <div class="modal fade" id="modalViewTeacher" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Thêm học sinh</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Mã học sinh</label>
-                                <div class="col-sm-9">
-                                    <input type="codeStudent" class="form-control form-control-sm" id="colFormLabelSm">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Họ và tên</label>
-                                <div class="col-sm-9">
-                                    <input type="name" class="form-control form-control-sm" id="colFormLabelSm">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Môn học</label>
-                                <div class="col-sm-9">
-                                    <input type="subjectClass" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Số điện thoại</label>
-                                <div class="col-sm-9">
-                                    <input type="phone" class="form-control form-control-sm" id="colFormLabelSm">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Ngày bắt đầu</label>
-                                <div class="col-sm-9">
-                                    <input type="date" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Lưu</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Modal View Student -->
-
-        <!-- Modal Edit Student-->
+        <!-- Modal Edit Teacher-->
         <div class="modal fade" id="modalEditTeacher" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Thêm học sinh</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Thêm giáo viên</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <form>
+                    <form role="form" action="" method="post">
+                        @csrf
+                        <div class="modal-body">
                             <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Mã học sinh</label>
-                                <div class="col-sm-9">
-                                    <input type="codeStudent" class="form-control form-control-sm" id="colFormLabelSm">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">STT</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="code" class="form-control form-control-sm" id="colFormLabelSm">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Họ và tên</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="name" class="form-control form-control-sm" id="colFormLabelSm">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Ngày tháng năm sinh</label>
+                                <div class="col-sm-8">
+                                    <input type="date" name="birthday" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Email</label>
+                                <div class="col-sm-8">
+                                    <input type="email" name="email" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Số điện thoại</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="phone" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Địa chỉ</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="address" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">CCCD/CMT</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="cccd" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Giới tính</label>
+                                <div class="col-sm-8">
+                                    <select name="sex" class="form-control" id="exampleFormControlSelect1">
+                                        <option value="0">Nam</option>
+                                        <option value="1">Nữ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm">Môn dạy</label>
+                                <div class="col-sm-8">
+                                    <select name="subjectClass" class="form-control" id="exampleFormControlSelect1">
+                                        <option>Toán 12</option>
+                                    </select>
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Họ và tên</label>
-                                <div class="col-sm-9">
-                                    <input type="name" class="form-control form-control-sm" id="colFormLabelSm">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Môn học</label>
-                                <div class="col-sm-9">
-                                    <input type="subjectClass" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Số điện thoại</label>
-                                <div class="col-sm-9">
-                                    <input type="phone" class="form-control form-control-sm" id="colFormLabelSm">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Ngày bắt đầu</label>
-                                <div class="col-sm-9">
-                                    <input type="date" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Lưu</button>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" name="luu_thong_tin" class="btn btn-primary">Lưu</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <!-- End Modal Edit Student -->
+        <!-- End Modal Add Teacher -->
+
+
+
+
 
     </div>
 

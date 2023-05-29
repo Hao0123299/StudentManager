@@ -1,0 +1,19 @@
+1. create table
+
+
+2. Chèn cột vào bảng
+    2.1: php artisan make:migration add_(tên cột))_to_(tên bảng) --table=(tên bảng)
+    2.2 public function up()
+            {
+                Schema::table('teachers', function (Blueprint $table) {
+                    $table->date('birthday')->nullable();
+                });
+            }
+
+            public function down()
+            {
+                Schema::table('teachers', function (Blueprint $table) {
+                    $table->dropColumn('birthday');
+                });
+            }
+    2.3 php artisan migrate
