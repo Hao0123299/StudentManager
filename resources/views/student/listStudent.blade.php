@@ -34,7 +34,7 @@
                         <tbody>
                         @foreach($student as $student)
                         <tr>
-                            <td>{{$student->code}}</td>
+                            <td>{{$student->codeStudent}}</td>
                             <td>{{$student->name}}</td>
                             <td>{{$student->name}}</td>
                             <td>{{$student->subjectClass}}</td>
@@ -43,7 +43,7 @@
                             <td>
                                 <a href="#" data-toggle="modal" data-target="#modalViewStudent"><i class="fas fa-eye"></i></a>
                                 <a href="#" data-toggle="modal" data-target="#modalEditStudent"><i class="fas fa-pen"></i></a>
-                                <a href="{{URL::to('/xoa-hoc-vien/'.$student->id)}}"><i class="fas fa-trash"></i></a>
+                                <a href="{{URL::to('/xoa-hoc-vien/'.$student->codeStudent)}}"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -69,7 +69,7 @@
                                 <div class="form-group row">
                                     <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">STT</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="code" class="form-control form-control-sm" id="colFormLabelSm">
+                                        <input type="text" name="codeStudent" class="form-control form-control-sm" id="colFormLabelSm">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -83,7 +83,7 @@
                                     <div class="col-sm-9">
                                         <select name="subjectClass" class="form-control" id="exampleFormControlSelect1">
                                             @foreach($subjectClass as $subjectClass)
-                                                <option value="{{$subjectClass->code}}">{{$subjectClass->subjectName}}</option>
+                                                <option value="{{$subjectClass->codeSubject}}">{{$subjectClass->subjectName}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -91,7 +91,11 @@
                                 <div class="form-group row">
                                     <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Giáo viên</label>
                                     <div class="col-sm-9">
-                                            <input type="text" name="teacher" class="form-control form-control-sm" id="colFormLabelSm" placeholder="">
+                                        <select name="teacher" class="form-control" id="exampleFormControlSelect1">
+                                            @foreach($teacher as $teacher)
+                                                <option value="{{$teacher->codeTeacher}}">{{$teacher->name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">

@@ -9,7 +9,7 @@ class Student extends Model
 {
     use HasFactory;
     protected $table = 'student';
-    protected $fillable = ['code', 'name', 'subjectClass', 'phone', 'date'];
+    protected $fillable = ['codeStudent', 'name', 'subjectClass', 'phone', 'date'];
 
     // Quan hệ một-nhiều với bảng "subjectClass"
     public function SubjectClass()

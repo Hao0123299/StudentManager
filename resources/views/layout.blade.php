@@ -136,7 +136,7 @@
                 <form
                     class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Tìm kiếm"
                                aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button">
@@ -237,7 +237,14 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">admin</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                 @php
+                                     $name = Session::get('name');
+                                     if($name){
+                                             echo $name;
+                                     }
+                                 @endphp
+                            </>
                             <img class="img-profile rounded-circle"
                                  src="img/undraw_profile.svg">
                         </a>
@@ -257,10 +264,12 @@
 {{--                                Activity Log--}}
 {{--                            </a>--}}
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Đăng xuất
-                            </a>
+                            <div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Đăng xuất
+                                </a>
+                            </div>
                         </div>
                     </li>
 
@@ -279,7 +288,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy;2022 Kênh lập trình</span>
+                    <span>Copyright &copy;2023 Kênh lập trình</span>
                 </div>
             </div>
         </footer>
@@ -307,10 +316,13 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-body">Bạn có muốn đăng xuất ? Nhấn vào đồng ý để đăng xuất hoặc nhấn trở lại để tiếp tục.</div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Trở lại</button>
+                <form method="POST" action="{{URL::to('/dang-xuat')}}">
+                    @csrf
+                    <button class="btn btn-secondary" type="submit">Đồng ý</button>
+                </form>
             </div>
         </div>
     </div>

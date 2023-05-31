@@ -27,23 +27,20 @@ Route::get('/', [HomeController::class, 'showIndex'])->name('showIndex');
 //Học sinh: thêm, sửa, xóa, lưu thông tin
 Route::get('/danh-sach-hoc-vien', [StudentController::class, 'showIndexStudent'])->name('showIndexStudent');
 Route::post('/luu-thong-tin-hoc-vien', [StudentController::class, 'saveStudent'])->name('saveStudent');
-Route::get('/xoa-hoc-vien/{id}', [StudentController::class, 'deleteStudent'])->name('deleteStudent');
+Route::get('/xoa-hoc-vien/{codeStudent}', [StudentController::class, 'deleteStudent'])->name('deleteStudent');
 
 
 //Giáo viên: thêm, sửa, xóa, lưu thông tin
 Route::get('/danh-sach-giao-vien', [TeacherController::class, 'showIndexTeacher'])->name('showIndexTeacher');
 Route::post('/luu-thong-tin-giao-vien', [TeacherController::class, 'saveTeacher'])->name('saveTeacher');
-Route::get('/xoa-giao-vien/{id}', [TeacherController::class, 'deleteTeacher'])->name('deleteTeacher');
-//Route::get('/them-giao-vien', [App\Http\Controllers\GiaoVienController::class, 'them_giao_vien']);
-//Route::get('/sua-giao-vien/{id}', [App\Http\Controllers\GiaoVienController::class, 'sua_giao_vien']);
-//Route::post('/luu-thong-tin-giao-vien', [App\Http\Controllers\GiaoVienController::class, 'luu_thong_tin_giao_vien']);
-//Route::get('/xoa-giao-vien/{id}', [App\Http\Controllers\GiaoVienController::class, 'xoa_giao_vien']);
-//Route::get('/dang-ky-tai-khoan', [App\Http\Controllers\DangKyController::class, 'index']);
+Route::get('/xoa-giao-vien/{codeTeacher}', [TeacherController::class, 'deleteTeacher'])->name('deleteTeacher');
+Route::get('/chinh-sua-giao-vien/{codeTeacher}', [TeacherController::class, 'showEditTeacher'])->name('showEditTeacher');
+
 
 //Môn
 Route::get('/danh-sach-mon', [SubjectClassController::class, 'showIndexSubjectClass'])->name('showIndexSubjectClass');
 Route::post('/luu-thong-tin-mon', [SubjectClassController::class, 'saveSubjectClass'])->name('saveSubjectClass');
-Route::get('/xoa-mon-hoc/{id}', [SubjectClassController::class, 'deleteSubjectClass'])->name('deleteSubjectClass');
+Route::get('/xoa-mon-hoc/{codeSubject}', [SubjectClassController::class, 'deleteSubjectClass'])->name('deleteSubjectClass');
 
 //Phòng
 Route::get('/danh-sach-phong', [RoomController::class, 'showIndexRoom'])->name('showIndexRoom');
@@ -56,6 +53,8 @@ Route::get('/xoa-phong/{id}', [RoomController::class, 'deleteRoom'])->name('dele
 //Route::get('/them-quyen', [App\Http\Controllers\RoleController::class, 'them_quyen']);
 //đăng nhập và reset password
 Route::get('/dang-nhap', [AuthController::class, 'showIndexLogin'])->name('showIndexLogin');
+Route::post('/dang-nhap', [AuthController::class, 'login'])->name('login');
+Route::post('/dang-xuat', [AuthController::class, 'logout'])->name('logout');
 Route::get('/quen-mat-khau', [AuthController::class, 'showIndexForgotPass'])->name('showIndexForgotPass');
 
 

@@ -33,11 +33,11 @@
                         @foreach($subjectClass as $subjectClass)
                         <tr>
 
-                                <td>{{$subjectClass->code}}</td>
+                                <td>{{$subjectClass->codeSubject}}</td>
                                 <td>{{$subjectClass->subjectName}}</td>
                                 <td>{{$subjectClass->price}} VNĐ</td>
                                 <td>
-                                    <a href="{{URL::to('/xoa-mon-hoc/'.$subjectClass->id)}}"><i class="fas fa-trash"></i></a>
+                                    <a href="{{URL::to('/xoa-mon-hoc/'.$subjectClass->codeSubject)}}"><i class="fas fa-trash"></i></a>
                                 </td>
                         </tr>
                         @endforeach

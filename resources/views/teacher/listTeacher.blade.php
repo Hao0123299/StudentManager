@@ -32,15 +32,13 @@
                         <tbody>
                             @foreach($teacher as $teacher)
                             <tr>
-                                <td>{{$teacher->code}}</td>
+                                <td>{{$teacher->codeTeacher}}</td>
                                 <td>{{$teacher->name}}</td>
                                 <td>{{$teacher->phone}}</td>
                                 <td>{{$teacher->classSubject}}</td>
                                 <td>
-                                    <a href="#" data-toggle="modal" data-target="#modalViewTeacher"><i class="fas fa-eye"></i></a>
-                                    <a href="#" data-toggle="modal" data-target="#modalEditTeacher"><i class="fas fa-pen"></i></a>
-                                    <a href="{{URL::to('/xoa-giao-vien/'.$teacher->id)}}"><i class="fas fa-trash"></i></a>
-
+                                    <a href="{{URL::to('/chinh-sua-giao-vien/'.$teacher->code)}}" data-toggle="modal" data-target="#modalEditTeacher"><i class="fas fa-pen"></i></a>
+                                    <a href="{{URL::to('/xoa-giao-vien/'.$teacher->codeTeacher)}}"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                             @endforeach

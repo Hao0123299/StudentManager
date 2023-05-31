@@ -37,22 +37,28 @@
                     <div class="row">
                         <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
                         <div class="col-lg-6">
-                            <form action="" method="post">
-                                @csrf
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Đăng nhập</h1>
                                     </div>
-                                    <form class="user">
+                                    @php
+                                        $message = Session::get('message');
+                                        if($message){
+                                            echo '<span class="text-alert">'.$message.'</span>';
+                                            Session::put('message', null);
+                                        }
+                                    @endphp
+                                    <form method="post" action="{{URL::to('/dang-nhap')}}" class="user">
+                                        @csrf
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                   id="exampleInputEmail" aria-describedby="emailHelp"
+                                            <input type="email" class="form-control form-control-user required autofocus"
+                                                   id="email" aria-describedby="emailHelp"
                                                    name="email"
                                                    placeholder="Địa chỉ email">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                   id="exampleInputPassword"
+                                            <input type="password" class="form-control form-control-user required"
+                                                   id="password"
                                                    name="password"
                                                    placeholder="Mật khẩu">
                                         </div>
@@ -62,21 +68,23 @@
                                                 <label class="custom-control-label" for="customCheck">Nhớ mật khẩu</label>
                                             </div>
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                            Đăng nhập
-                                        </a>
+                                        <div>
+                                            <button type="submit" class="btn btn-primary btn-user btn-block">Đăng nhập</button>
+                                        </div>
+{{--                                        <a type="submit" class="btn btn-primary btn-user btn-block">--}}
+{{--                                            Đăng nhập--}}
+{{--                                        </a>--}}
                                         <hr>
                                         <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Đăng nhập Google
                                         </a>
-
                                     </form>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="{{URL::to('/quen-mat-khau')}}">Bạn quên mật khẩu</a>
                                     </div>
                                 </div>
-                            </form>
+
                         </div>
                     </div>
                 </div>
